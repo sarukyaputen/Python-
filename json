@@ -1,0 +1,31 @@
+     result2 = bytes.decode(result)
+        result = result2[3:-3]
+        a = json.loads(result)
+        # print(a)
+        baseball = []
+        count_ta = result2.count('ta')  # 算出幾場比賽
+        for i in range(count_ta):
+            try:
+                pk = (a["schedule"][i]["pk"])  # 比賽 代號
+                aID = (a["schedule"][i]["aID"])  # ?
+                gst = (a["schedule"][i]["gst"])  #
+                ta = (a["schedule"][i]["ta"])  # A 隊名
+                tb = (a["schedule"][i]["tb"])  # B 對名
+                runsA = (a["schedule"][i]["runsA"])  # A 比分
+                runsB = (a["schedule"][i]["runsB"])  # B 比分
+                gd = (a["schedule"][i]["gd"])  # 日期
+                gs = (a["schedule"][i]["gs"])  # 目前 比賽狀態
+                ra = (a["schedule"][i]["ra"])  # RHE A
+                rb = (a["schedule"][i]["rb"])  # RHE B
+                tt = (a["schedule"][i]["tt"])  # 延賽
+                st = (a["schedule"][i]["st"])  # 賽局
+                bsob = (a["schedule"][i]["bsob"])  # ?
+                mID = (a["schedule"][i]["mID"])  # ?
+            except Exception as e:
+                print(e)
+
+            baseball.append({
+                "match_id": pk, "aID": aID, "gst": gst, "teamA_name": ta, "teamB_name": tb, "scoreA": runsA,
+                "scoreB": runsB, "tt": tt, "gd": gd, "gs": gs, "ra": ra, "rb": rb, "st": st, "bsob": bsob, "mID": mID,
+            })
+        print(baseball)
